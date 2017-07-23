@@ -9,36 +9,37 @@ var daysOfWeek = [
 ];
 
 function hour(i, container) {
-  var $hour = $("<canvas>").addClass("hour")
-      .html(milTimeBy_nth_hr(i)+"-"+milTimeBy_nth_hr(i+1));
-  $(container).append($hour);
+    var hour = $("<canvas>").addClass("hour")
+        .html(milTimeBy_nth_hr(i)+"-"+milTimeBy_nth_hr(i+1));
+    $(container).append(hour);
 }
 
 function milTimeBy_nth_hr(n) {
-  if (n==24) n=0;
-  var milTime = n.toString() + "00";
-  if (milTime.length == 3) milTime = "0" + milTime;
-  return milTime;
+    if (n==24) n=0;
+    var milTime = n.toString() + "00";
+    if (milTime.length == 3) milTime = "0" + milTime;
+    return milTime;
 }
 
 function daily(i) {
-  var $daily = $("<div>").addClass("daily").attr("id", daysOfWeek[i]);
-  $daily.append(createDaybel(i));
-  return $("body").append($daily);
+    var daily;
+    daily = $("<div>").addClass("daily").attr("id", daysOfWeek[i]);
+    daily.append(createDaybel(i));
+    return $("body").append(daily);
 }
 
 function createDaybel(i) {
-  var fancy_Day = toSentenceCase(daysOfWeek[i]);
-  var $frame = $("<div>").addClass("day-bels");
-  var $daybel = $("<div>")
-      .addClass("day-label")
-      .attr("id", fancy_Day+"-label")
-      .html(fancy_Day);
-  return $($frame).append($daybel);
+    var fancy_Day = toSentenceCase(daysOfWeek[i]);
+    var frame = $("<div>").addClass("day-bels");
+    var daybel = $("<div>")
+        .addClass("day-label")
+        .attr("id", fancy_Day+"-label")
+        .html(fancy_Day);
+    return $(frame).append(daybel);
 }
 
 function toSentenceCase(string) {
-  return string.charAt(0).toUpperCase() + string.slice(1);
+    return string.charAt(0).toUpperCase() + string.slice(1);
 }
 
 /*for (i = 0; i < 24; i++) {
@@ -46,10 +47,10 @@ function toSentenceCase(string) {
  }*/
 
 for (i = 0; i < 7; i++) {
-  daily(i);
-  for (j = 0; j < 24; j++) {
-    var d = "#" + daysOfWeek[i];
-    hour(j, d);
+    daily(i);
+    for (j = 0; j < 24; j++) {
+        var d = "#" + daysOfWeek[i];
+        hour(j, d);
   }
 }
 
